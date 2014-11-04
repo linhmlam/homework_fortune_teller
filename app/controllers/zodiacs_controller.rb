@@ -4,7 +4,8 @@ class ZodiacsController < ApplicationController
   end
 
   def sign
-    render params["the_sign"]
+    Zodiac.all
+    render 'sign'
   end
 
   def ram
