@@ -1,6 +1,8 @@
 class ZodiacsController < ApplicationController
   def creature
+    Zodiac.all
     render params["the_creature"]
+    #Could also show render to 'creature.html.erb', but how do you get the prediction to show up?
   end
 
   def sign
