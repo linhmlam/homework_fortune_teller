@@ -1,12 +1,21 @@
 class ZodiacsController < ApplicationController
   def creature
-    Zodiac.all
-    render params["the_creature"]
-    #Could also show render to 'creature.html.erb', but how do you get the prediction to show up?
+    # render params["the_creature"]
+    # Wouldn't the above method be easier??
+    # Zodiac.all
+    @creature = Zodiac.find_by({ :creature => params["the_creature"]}).sign
+    z = Zodiac.find_by({ :creature => params["the_creature"]})
+    @prediction = z.fortune
+    render 'creature'
   end
 
   def sign
-    Zodiac.all
+    @sign = params["the_sign"]
+    # Zodiac.all
+    z = Zodiac.find_by({ :sign => params["the_sign"]})
+    @prediction = z.fortune
+    # More efficient method = @prediction = Zodiac.find_by({ :sign => params["the_sign"]}).fortune
+    # NOTE: THE TRICK: .sign, .fortune, .creature are all actions you can call --> WHY CAN YOU DO THIS?
     render 'sign'
   end
 
